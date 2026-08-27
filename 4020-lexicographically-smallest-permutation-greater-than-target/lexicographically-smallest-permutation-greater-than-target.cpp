@@ -13,14 +13,10 @@ public:
         for (int i = 0; i < n; i++) {
             int x = target[i] - 'a';
 
-            // 1. Try to match target[i]
             if (freq[x] > 0) {
                 freq[x]--;
                 continue;
             }
-
-            // 2. Same character is not available.
-            // Try the smallest character greater than target[i].
             for (int c = x + 1; c < 26; c++) {
                 if (freq[c] > 0) {
                     string ans = target.substr(0, i);
@@ -28,7 +24,6 @@ public:
 
                     freq[c]--;
 
-                    // Put remaining characters in sorted order
                     for (int j = 0; j < 26; j++) {
                         while (freq[j] > 0) {
                             ans += char('a' + j);
@@ -40,8 +35,7 @@ public:
                 }
             }
 
-            // 3. Cannot make the answer greater here.
-            // Backtrack.
+           
             for (int j = i - 1; j >= 0; j--) {
                 freq[target[j] - 'a']++;
 
@@ -54,7 +48,6 @@ public:
 
                         freq[c]--;
 
-                        // Add remaining characters sorted
                         for (int k = 0; k < 26; k++) {
                             while (freq[k] > 0) {
                                 ans += char('a' + k);
@@ -70,8 +63,6 @@ public:
             return "";
         }
 
-        // We constructed target exactly.
-        // Need a STRICTLY greater permutation.
         for (int i = n - 1; i >= 0; i--) {
             freq[target[i] - 'a']++;
 
