@@ -50,7 +50,6 @@ public:
 
         long long remaining = k - used;
 
-        // Reduce 'remaining' differences from level to level - 1.
         for (int d : diff) {
             if (remaining == 0) break;
 
