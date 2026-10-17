@@ -1,4 +1,3 @@
-
 class Solution {
 public:
     int minSwaps(vector<int>& nums) {
@@ -12,22 +11,18 @@ public:
             }
             return sum;
         };
-
         vector<pair<int, int>> arr;
         for (int i = 0; i < n; i++) {
             arr.push_back({nums[i], i});
         }
-
         sort(arr.begin(), arr.end(), [&](auto &a, auto &b) {
             int sumA = digitSum(a.first);
             int sumB = digitSum(b.first);
-
             if (sumA != sumB)
                 return sumA < sumB;
 
             return a.first < b.first;
         });
-
         vector<int> visited(n, 0);
         int swaps = 0;
 
@@ -43,10 +38,8 @@ public:
                 j = arr[j].second;
                 cycleSize++;
             }
-
             swaps += cycleSize - 1;
         }
-
         return swaps;
     }
 };
