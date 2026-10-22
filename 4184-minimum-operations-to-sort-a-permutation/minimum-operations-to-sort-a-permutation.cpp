@@ -1,4 +1,3 @@
-
 class Solution {
 public:
     int minOperations(vector<int>& nums) {
@@ -7,10 +6,7 @@ public:
         if (is_sorted(nums.begin(), nums.end())) {
             return 0;
         }
-
         int start = nums[0];
-
-        // Check ascending cyclic rotation
         bool ascending = true;
 
         for (int i = 0; i < n; i++) {
@@ -19,12 +15,9 @@ public:
                 break;
             }
         }
-
         if (ascending) {
             return min(n - start, start + 2);
         }
-
-        // Check descending cyclic rotation
         bool descending = true;
 
         for (int i = 0; i < n; i++) {
@@ -38,7 +31,6 @@ public:
             int k = (n - 1 - start + n) % n;
             return min(k, n - k) + 1;
         }
-
         return -1;
     }
 };
