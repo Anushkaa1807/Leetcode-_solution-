@@ -1,4 +1,3 @@
-
 class Solution {
     int LOG;
     vector<vector<int>> adj, up;
@@ -77,8 +76,6 @@ public:
 
         for (int i = 0; i < n; i++)
             mask[i] = 1 << (s[i] - 'a');
-
-        // Iterative DFS: Euler Tour and initial root masks
         vector<int> parent(n, -1), nextIdx(n, 0);
         stack<int> st;
 
@@ -108,8 +105,6 @@ public:
                 st.pop();
             }
         }
-
-        // Binary lifting table
         for (int j = 1; j < LOG; j++) {
             for (int u = 0; u < n; u++) {
                 up[j][u] = up[j - 1][up[j - 1][u]];
@@ -146,7 +141,6 @@ public:
                     getRootMask(v) ^
                     mask[w];
 
-                // At most one letter has an odd frequency
                 answer.push_back(
                     (pathMask & (pathMask - 1)) == 0
                 );
