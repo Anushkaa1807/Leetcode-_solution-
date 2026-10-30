@@ -17,14 +17,12 @@ public:
 
         vector<vector<long long>> dist(n, vector<long long>(k + 1, INF));
 
-        // {cost, node, consecutive count}
         priority_queue<
             tuple<long long,int,int>,
             vector<tuple<long long,int,int>>,
             greater<tuple<long long,int,int>>
         > pq;
 
-        // Starting node has one occurrence of its label
         dist[0][1] = 0;
         pq.push({0, 0, 1});
 
@@ -37,7 +35,6 @@ public:
                 continue;
             }
 
-            // Destination reached
             if (u == n - 1) {
                 return (int)cost;
             }
@@ -53,7 +50,6 @@ public:
                     newCnt = 1;
                 }
 
-                // Invalid consecutive characters
                 if (newCnt > k) {
                     continue;
                 }
